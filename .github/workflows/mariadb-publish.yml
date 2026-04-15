@@ -27,7 +27,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           # 指向你存放 MariaDB Dockerfile 的目录
-          context: ./mariadb-build
+          context: .
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
