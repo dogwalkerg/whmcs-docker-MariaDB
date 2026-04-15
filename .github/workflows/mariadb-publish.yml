@@ -1,7 +1,7 @@
-name: Build Multi-Arch MariaDB
+name: Build MariaDB Multi-Arch
 
 on:
-  workflow_dispatch: # 支持手动点击运行
+  workflow_dispatch:
 
 jobs:
   build:
@@ -23,11 +23,12 @@ jobs:
           username: ${{ secrets.ALIYUN_USERNAME }}
           password: ${{ secrets.ALIYUN_PASSWORD }}
 
-      - name: Build and push
+      - name: Build and Push
         uses: docker/build-push-action@v5
         with:
-          # 指向你存放 MariaDB Dockerfile 的目录
           context: .
+          # 注意：这里指定了不同的 Dockerfile
+          file: ./Dockerfile.mariadb
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
